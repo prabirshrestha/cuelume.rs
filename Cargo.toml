@@ -1,0 +1,77 @@
+[package]
+name = "cuelume"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.86"
+description = "Curated, procedurally generated interaction sounds for Rust applications"
+license = "MIT"
+repository = "https://github.com/prabirshrestha/cuelume"
+readme = "README.md"
+include = [
+    "/src/**",
+    "/examples/play.rs",
+    "/examples/support/**",
+    "/examples/wasm/index.html",
+    "/examples/wasm/src/**",
+    "/examples/wasm_server.rs",
+    "/tests/**",
+    "/LICENSE",
+    "/NOTICE",
+    "/README.md",
+]
+keywords = ["audio", "sound", "ui", "synthesis", "wasm"]
+categories = ["multimedia::audio", "game-development", "wasm"]
+
+[dependencies]
+kira = { version = "0.12.3", default-features = false, features = ["cpal"] }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+axum = { version = "0.8.4", optional = true }
+hound = { version = "3.5.1", optional = true }
+ratatui = { version = "0.30.0", default-features = false, features = ["crossterm"], optional = true }
+tokio = { version = "1.47.1", features = ["macros", "rt-multi-thread", "signal"], optional = true }
+wasm-bindgen-cli-support = { version = "=0.2.127", optional = true }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = { version = "=0.2.127", optional = true }
+web-sys = { version = "0.3.104", features = [
+    "Document",
+    "Element",
+    "EventTarget",
+    "HtmlInputElement",
+    "Window",
+], optional = true }
+
+[features]
+default = []
+tools = ["dep:hound", "dep:ratatui"]
+wasm-example = [
+    "dep:axum",
+    "dep:tokio",
+    "dep:wasm-bindgen",
+    "dep:wasm-bindgen-cli-support",
+    "dep:web-sys",
+]
+
+[[example]]
+name = "play"
+path = "examples/play.rs"
+required-features = ["tools"]
+
+[[example]]
+name = "wasm"
+path = "examples/wasm_server.rs"
+required-features = ["wasm-example"]
+
+[[example]]
+name = "wasm-app"
+path = "examples/wasm/src/lib.rs"
+crate-type = ["cdylib"]
+required-features = ["wasm-example"]
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = "warn"
+pedantic = "warn"

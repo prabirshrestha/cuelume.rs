@@ -1,0 +1,8 @@
+The built-in sound palette is derived from the MIT-licensed Cuelume project:
+https://github.com/Danilaa1/cuelume
+
+Recipe parity is pinned to upstream commit:
+5c6c20f50cf78c68f31da12fdebdbc1e55cc7071
+
+The Rust synthesis and playback implementation is independent of the original
+Web Audio implementation.
