@@ -14,9 +14,11 @@ description: Release a new version of the cuelume Rust crate by pulling main, ch
 - Do not run `cargo publish` locally. A matching tag starts publishing in GitHub Actions.
 - Confirm that `cuelume` already exists on crates.io. The first publication must
   be done manually with an API token.
-- Confirm that the crate has a GitHub trusted publisher for repository
-  `prabirshrestha/cuelume.rs` and workflow `ci.yaml`. Do not push a release tag
-  until this configuration exists.
+- The crate already has a crates.io GitHub Trusted Publisher for repository
+  `prabirshrestha/cuelume.rs` and workflow `ci.yaml`. Treat this external
+  configuration as an established repository precondition. Do not ask the user
+  to confirm it or try to verify it during a normal release. If trusted
+  publishing fails, diagnose the configuration before retrying the tag job.
 
 ## Check Upstream CI
 
