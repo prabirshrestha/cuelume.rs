@@ -1,11 +1,11 @@
 [package]
 name = "cuelume"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2024"
 rust-version = "1.86"
 description = "Curated, procedurally generated interaction sounds for Rust applications"
 license = "MIT"
-repository = "https://github.com/prabirshrestha/cuelume"
+repository = "https://github.com/prabirshrestha/cuelume.rs"
 readme = "README.md"
 include = [
     "/src/**",

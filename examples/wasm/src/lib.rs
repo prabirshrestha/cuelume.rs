@@ -70,10 +70,10 @@ fn input_value(document: &Document, id: &str) -> Result<f32, String> {
 }
 
 fn set_status(message: &str) {
-    if let Ok(document) = document()
-        && let Some(status) = document.get_element_by_id("status")
-    {
-        status.set_text_content(Some(message));
+    if let Ok(document) = document() {
+        if let Some(status) = document.get_element_by_id("status") {
+            status.set_text_content(Some(message));
+        }
     }
 }
 

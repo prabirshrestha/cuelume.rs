@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release New Version"
+  short_description: "Release Cuelume with trusted publishing"
+  default_prompt: "Use $release-new-version to version, validate, push, and tag a Cuelume release."
